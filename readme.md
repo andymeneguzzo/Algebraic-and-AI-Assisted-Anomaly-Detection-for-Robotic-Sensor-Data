@@ -1,4 +1,4 @@
-# Algebraic and AI-integrated Anomaly Detection for Robotic Sensor Data
+# Algebraic and AI-Assisted Anomaly Detection for Robotic Sensor Data
 
 ### Author
 - Andrés Christian Meneguzzo
