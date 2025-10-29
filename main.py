@@ -1,7 +1,15 @@
+
+import os
 import argparse
+import json
+import time
+from datetime import datetime
 from pathlib import Path
+import numpy as np
 import pandas as pd
-from src import preprocessing, residual_detector, covariance_detector, pca_based_methods, robust_pca, manifold_methods
+import seaborn as sns
+import matplotlib.pyplot as plt
+from src import preprocessing, residual_detector, covariance_detector, pca_based_methods, robust_pca, manifold_methods, evaluation_report
 
 def run_preprocessing():
     data_dir = Path("./data")
@@ -90,11 +98,15 @@ def run_robustpca_manifold_detection():
 
     print("[INFO] Robust PCA + Manifold detection completed.")
 
+def run_evaluation_report():
+    evaluation_report.run_evaluation(results_dir="./results", ai_report_dir="./ai_report")
+
+
 
 def main():
     parser = argparse.ArgumentParser(description="Algebraic Anomaly Detection Pipeline")
     parser.add_argument("--stage", type=str, required=True,
-                        choices=["preprocess", "detect_res_cov", "detect_pca_autoenc", "detect_robust_manifold"], help="Pipeline stage to execute.")
+                        choices=["preprocess", "detect_res_cov", "detect_pca_autoenc", "detect_robust_manifold", "evaluate_report"], help="Pipeline stage to execute.")
     args = parser.parse_args()
 
     if args.stage == "preprocess":
@@ -105,8 +117,10 @@ def main():
         run_pca_kpca_autoencoder_detection()
     elif args.stage == "detect_robust_manifold":
         run_robustpca_manifold_detection()
+    elif args.stage == "evaluate_report":
+        run_evaluation_report()
     else:
-        print("Unknown stage. Available: preprocess, detect, detect_pca_autoenc, detect_robust_manifold")
+        print("Unknown stage. Available: preprocess, detect, detect_pca_autoenc, detect_robust_manifold, evaluate_report")
 
 
 if __name__ == "__main__":
