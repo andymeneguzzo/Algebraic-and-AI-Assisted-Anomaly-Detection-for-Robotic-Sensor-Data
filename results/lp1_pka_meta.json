@@ -1,0 +1,10 @@
+{
+  "dataset": "lp1",
+  "n_samples": 1320,
+  "n_features": 6,
+  "pca_n_components": 5,
+  "kpca_n_components": 5,
+  "kpca_gamma": 0.3427036410712814,
+  "has_autoencoder": true,
+  "metrics_if_labels": {}
+}
